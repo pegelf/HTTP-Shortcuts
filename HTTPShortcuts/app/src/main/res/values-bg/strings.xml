@@ -122,8 +122,10 @@
     <string name="executed">%s изпълнено.</string>
     <!-- Error message shown in Toast when shortcut on home screen was clicked but the corresponding data was not found (i.e. might have been deleted). -->
     <string name="shortcut_not_found">Не беше открит пряк път. Може да се наложи да го добавите отново на началния екран.</string>
+    <!-- Error message shown when clicking a widget, but the configured shortcut does not exist -->
     <!-- Error message shown when a user clicks a shortcut that was pinned to the home screen, but the shortcut no longer exists because it was deleted. -->
     <string name="error_shortcut_deleted">Този пряк път беше изтрит.</string>
+    <!-- Error message shown when a user clicks a category that was pinned to the home screen, but the category no longer exists because it was deleted. -->
     <!-- Validation error, shown when user tries to save a shortcut without a name -->
     <string name="validation_name_not_empty">Моля, въведете име.</string>
     <!-- Validation error, shown when user tries to save a shortcut without a valid URL -->
@@ -398,6 +400,9 @@
     <string name="settings_f_droid_summary">Проверка за обновления</string>
     <!-- Title of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation">Документация</string>
+    <!-- Title of option in settings screen: allows to select whether the built-in documentation pages or the ones from the website should be shown -->
+    <!-- Option for setting to select how documentation links should be resolved: inside the app (as opposed to in the browser) -->
+    <!-- Option for setting to select how documentation links should be resolved: in the browser (as opposed to inside the app) -->
     <!-- Subtitle of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation_summary">Често задавани въпроси, източници, примери, …</string>
     <!-- Message, shown in snackbar, confirming to user that a shortcut was duplicated. %1$s is a placeholder for the shortcut's name -->
@@ -933,6 +938,7 @@
     <string name="action_type_open_url_title">Отвори URL адреса</string>
     <!-- Shortcut Action Title: Open another app (via its package name) -->
     <string name="action_type_open_app_title">Отвори приложението</string>
+    <!-- Shortcut Action Title: Open a specific category within the app -->
     <!-- Shortcut Action Title: get the device ID (i.e., a unique identifier for the app, to differentiate it from app installations on other devices) -->
     <string name="action_type_get_device_id_title">Извличане на идентификатора на устройството</string>
     <!-- Shortcut Action Error: Shown when the "Send Intent" action fails -->
@@ -1189,6 +1195,7 @@
     <string name="error_shortcut_not_found_for_set_visible">Не е възможно да се промени видимостта на прекия път „%1$s“, тъй като той не съществува.</string>
     <!-- Error message: Shown in toast when "Set Category Hidden" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <string name="error_category_not_found_for_set_visible">Не е възможно да се промени видимостта на категорията „%1$s“, тъй като тя не съществува.</string>
+    <!-- Error message: Shown in toast when "Open Category" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <!-- Error message: Shown in toast when "Change Icon" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
     <string name="error_shortcut_not_found_for_changing_icon">Не можа да се промени иконата на прекия път „%1$s“, тъй като той не съществува.</string>
     <!-- Error message: Shown in toast when "Change Description" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
@@ -2136,7 +2143,7 @@
     <!-- Error when accessing a file (shared into the app) fails due to a security error, likely because of a problem with the sharing app. %s is a placeholder for the error details -->
     <!-- Error when accessing a file (shared into the app) fails due to an unknown error. %s is a placeholder for the error details -->
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">Симулиране на медиен плейър</string>
+    <string name="settings_media_controls_title">Симулиране на медиен плейър</string>
     <string name="label_event_history_trigger_type_media_controls">Управление на мултимедия</string>
     <string name="settings_media_controls_summary">Позволява управление например чрез смарт часовник или бутони на слушалки.</string>
     <string name="notification_channel_media_controls_title">Симулация на медиен плейър</string>
@@ -2152,4 +2159,5 @@
     <string name="media_controls_change_category">Смяна на категорията</string>
     <string name="media_controls_change_category_summary">Натиснете възпроизвеждане или пауза за следващата категория</string>
     <string name="media_controls_category_item_pattern">%1$s — %2$s</string>
+    <!-- Dialog message, shown to the user on the Documentation screen the first time to inform them that docs are only available in English -->
 </resources>

@@ -34,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -169,7 +168,7 @@ class ExecutionService : LifecycleService() {
             .setContentText(text.takeIf { title != null })
             .setNumber(counter)
             .setLargeIcon(shortcut?.icon?.let { IconUtil.getIcon(context, it) })
-            .setSmallIcon(R.drawable.ic_quick_settings_tile)
+            .setSmallIcon(R.drawable.ic_app_icon_small)
             .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_DEFERRED)
             .setLocalOnly(true)
             .setShowWhen(false)

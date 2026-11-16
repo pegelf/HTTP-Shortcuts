@@ -310,7 +310,7 @@ class MediaControlsService : LifecycleService() {
                     itemName
                 },
             )
-            .setSmallIcon(R.drawable.ic_quick_settings_tile)
+            .setSmallIcon(R.drawable.ic_app_icon_small)
             .setContentIntent(createContentIntent())
             .setCategory(Notification.CATEGORY_SERVICE)
             .setOngoing(true)

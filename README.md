@@ -11,6 +11,22 @@
 
 An Android app that lets you to create shortcuts that can be placed on your home screen. Each shortcut, when clicked, triggers an HTTP request, with the possibility to process and display the response in various ways. Plus a whole lot of other (non-HTTP) stuff.
 
+## About this fork
+
+This fork tracks the official HTTP Shortcuts releases and adds an opt-in **simulated media player** for controlling shortcuts from devices that can control media playback, such as smartwatches, car infotainment systems, headphones, and headset buttons. The feature originated from [issue #547](https://github.com/Waboodoo/HTTP-Shortcuts/issues/547).
+
+When enabled in the settings:
+
+- the selected visible shortcut is exposed as the track title;
+- its category is exposed as the artist and album for broad companion-device compatibility;
+- previous and next select shortcuts in category order;
+- play and pause trigger the selected shortcut and briefly show a paused state as execution feedback;
+- hidden shortcuts and shortcuts in hidden categories are excluded;
+- the media player can be limited to selected categories, with an additional entry for switching between them; and
+- the simulation can be stopped from its ongoing notification or by disabling it in the settings.
+
+The simulation requires notification permission and an active media-playback foreground service while enabled. Fork releases deliberately use the **same version number as their corresponding official release**, so a fork release named `v4.10.0` contains the official `v4.10.0` changes plus the additions above. Fork builds are available from [this repository's Releases page](https://github.com/pegelf/HTTP-Shortcuts/releases).
+
 <a href="https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts"><img alt="Get it on Google Play" src="/assets/play_store.svg" height="80" /></a>
 <a href="https://f-droid.org/en/packages/ch.rmy.android.http_shortcuts/"><img alt="Get it on F-Droid" src="/assets/f_droid.svg" height="80" /></a>
 <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22ch.rmy.android.http_shortcuts%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FWaboodoo%2FHTTP-Shortcuts%22%2C%22author%22%3A%22Waboodoo%22%2C%22name%22%3A%22HTTP%20Shortcuts%22%7D%0A"><img alt="Get it on Obtainium" src="/assets/obtainium.png" height="80" /></a>

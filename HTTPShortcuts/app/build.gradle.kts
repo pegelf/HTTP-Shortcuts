@@ -47,9 +47,9 @@ extensions.configure<ApplicationExtension> {
         targetSdk = 37
 
         // Version name and code must remain as literals so that F-Droid can read them
-        versionName = "4.9.0"
+        versionName = "4.10.0"
         // 11,(2 digits major),(2 digits minor),(2 digits patch),(2 digits build)
-        versionCode = 1104090001
+        versionCode = 1104100001
 
         buildConfigField("String", "BUGSNAG_API_KEY", "\"$bugsnagAPIKey\"")
         buildConfigField("int", "BUILD_DATE", buildDate.toString())
@@ -82,6 +82,7 @@ extensions.configure<ApplicationExtension> {
             "pt-rBR",
             "ru",
             "tr",
+            "uk",
             "zh-rCN",
             "zh-rTW",
             "ja",
@@ -173,6 +174,12 @@ extensions.configure<ApplicationExtension> {
     packaging {
         jniLibs {
             excludes.add("META-INF/*")
+
+            // Bugsnag's ANR and root detection, as well as NDK support is disabled,
+            // so we don't need any of these binaries
+            excludes.add("**/libbugsnag-root-detection.so")
+            excludes.add("**/libbugsnag-plugin-android-anr.so")
+            excludes.add("**/libbugsnag-ndk.so")
         }
         resources {
             excludes.add("META-INF/*")

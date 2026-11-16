@@ -155,6 +155,9 @@ constructor(
     }
 
     fun updatePinnedShortcuts(shortcuts: List<LauncherShortcut>) {
+        if (shortcuts.isEmpty()) {
+            return
+        }
         logInfo("Updating pinned shortcut(s): ${shortcuts.size}")
         shortcutManager.updateShortcuts(
             shortcuts.map { shortcut ->
@@ -173,12 +176,21 @@ constructor(
         shortcutManager.updateShortcuts(listOf(shortcutInfo))
     }
 
+    fun removePinnedCategoryShortcut(categoryId: CategoryId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val ids = listOf(createCategoryShortcutInfoId(categoryId))
+            shortcutManager.removeLongLivedShortcuts(ids)
+            shortcutManager.removeDynamicShortcuts(ids)
+            shortcutManager.disableShortcuts(ids, context.getString(R.string.error_category_deleted))
+        }
+    }
+
     private fun createCategoryShortcutInfo(
         categoryId: CategoryId,
         categoryName: String,
         icon: ShortcutIcon,
     ): ShortcutInfo =
-        ShortcutInfo.Builder(context, ID_PREFIX_CATEGORY + categoryId)
+        ShortcutInfo.Builder(context, createCategoryShortcutInfoId(categoryId))
             .setShortLabel(categoryName)
             .setLongLabel(categoryName)
             .setRank(0)
@@ -192,9 +204,9 @@ constructor(
             }
             .build()
 
-    fun removeShortcut(shortcutId: ShortcutId) {
+    fun removeShortcuts(shortcutIds: Collection<ShortcutId>) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val ids = listOf(createShortcutInfoId(shortcutId))
+            val ids = shortcutIds.map(::createShortcutInfoId)
             shortcutManager.removeLongLivedShortcuts(ids)
             shortcutManager.removeDynamicShortcuts(ids)
             shortcutManager.disableShortcuts(ids, context.getString(R.string.error_shortcut_deleted))
@@ -203,6 +215,9 @@ constructor(
 
     private fun createShortcutInfoId(shortcutId: ShortcutId): String =
         ID_PREFIX_SHORTCUT + shortcutId
+
+    private fun createCategoryShortcutInfoId(categoryId: CategoryId): String =
+        ID_PREFIX_CATEGORY + categoryId
 
     companion object {
         private const val ID_PREFIX_SHORTCUT = "shortcut_"

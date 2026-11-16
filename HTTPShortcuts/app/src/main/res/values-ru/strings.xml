@@ -121,8 +121,10 @@
     <string name="executed">%s выполнен.</string>
     <!-- Error message shown in Toast when shortcut on home screen was clicked but the corresponding data was not found (i.e. might have been deleted). -->
     <string name="shortcut_not_found">Ярлык не найден. Возможно, вам придется повторно добавить его на главный экран.</string>
+    <!-- Error message shown when clicking a widget, but the configured shortcut does not exist -->
     <!-- Error message shown when a user clicks a shortcut that was pinned to the home screen, but the shortcut no longer exists because it was deleted. -->
     <string name="error_shortcut_deleted">Этот ярлык был удален.</string>
+    <!-- Error message shown when a user clicks a category that was pinned to the home screen, but the category no longer exists because it was deleted. -->
     <!-- Validation error, shown when user tries to save a shortcut without a name -->
     <string name="validation_name_not_empty">Пожалуйста, введите имя.</string>
     <!-- Validation error, shown when user tries to save a shortcut without a valid URL -->
@@ -398,6 +400,9 @@
     <string name="settings_f_droid_summary">Проверить обновления</string>
     <!-- Title of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation">Документация</string>
+    <!-- Title of option in settings screen: allows to select whether the built-in documentation pages or the ones from the website should be shown -->
+    <!-- Option for setting to select how documentation links should be resolved: inside the app (as opposed to in the browser) -->
+    <!-- Option for setting to select how documentation links should be resolved: in the browser (as opposed to inside the app) -->
     <!-- Subtitle of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation_summary">FAQ, ссылки, примеры,…</string>
     <!-- Message, shown in snackbar, confirming to user that a shortcut was duplicated. %1$s is a placeholder for the shortcut's name -->
@@ -917,6 +922,7 @@
     <string name="action_type_open_url_title">Открытый URL</string>
     <!-- Shortcut Action Title: Open another app (via its package name) -->
     <string name="action_type_open_app_title">Открытое приложение</string>
+    <!-- Shortcut Action Title: Open a specific category within the app -->
     <!-- Shortcut Action Title: get the device ID (i.e., a unique identifier for the app, to differentiate it from app installations on other devices) -->
     <string name="action_type_get_device_id_title">Получить идентификатор устройства</string>
     <!-- Shortcut Action Error: Shown when the "Send Intent" action fails -->
@@ -1179,6 +1185,7 @@ Wake-on-LAN</string>
     <string name="error_shortcut_not_found_for_set_visible">Не удалось изменить видимость ярлыка \“%1$s\, потому что он не существует.</string>
     <!-- Error message: Shown in toast when "Set Category Hidden" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <string name="error_category_not_found_for_set_visible">Не удалось изменить видимость категории \“%1$s\, потому что она не существует.</string>
+    <!-- Error message: Shown in toast when "Open Category" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <!-- Error message: Shown in toast when "Change Icon" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
     <string name="error_shortcut_not_found_for_changing_icon">Не удалось изменить значок ярлыка \"%1$s\", потому что он не существует.</string>
     <!-- Error message: Shown in toast when "Change Description" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
@@ -2083,7 +2090,7 @@ Wake-on-LAN</string>
     <!-- Error when accessing a file (shared into the app) fails due to a security error, likely because of a problem with the sharing app. %s is a placeholder for the error details -->
     <!-- Error when accessing a file (shared into the app) fails due to an unknown error. %s is a placeholder for the error details -->
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">Имитировать медиаплеер</string>
+    <string name="settings_media_controls_title">Имитировать медиаплеер</string>
     <string name="label_event_history_trigger_type_media_controls">Управление мультимедиа</string>
     <string name="settings_media_controls_summary">Позволяет управлять, например, с помощью умных часов или кнопок наушников.</string>
     <string name="notification_channel_media_controls_title">Имитация медиаплеера</string>
@@ -2099,4 +2106,5 @@ Wake-on-LAN</string>
     <string name="media_controls_change_category">Сменить категорию</string>
     <string name="media_controls_change_category_summary">Нажмите воспроизведение или паузу для выбора следующей категории</string>
     <string name="media_controls_category_item_pattern">%1$s — %2$s</string>
+    <!-- Dialog message, shown to the user on the Documentation screen the first time to inform them that docs are only available in English -->
 </resources>

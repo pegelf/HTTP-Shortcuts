@@ -124,8 +124,10 @@
     <string name="executed">%s 已執行。</string>
     <!-- Error message shown in Toast when shortcut on home screen was clicked but the corresponding data was not found (i.e. might have been deleted). -->
     <string name="shortcut_not_found">找不到捷徑。您或需重新新增到主畫面。</string>
+    <!-- Error message shown when clicking a widget, but the configured shortcut does not exist -->
     <!-- Error message shown when a user clicks a shortcut that was pinned to the home screen, but the shortcut no longer exists because it was deleted. -->
     <string name="error_shortcut_deleted">此捷徑已經刪除。</string>
+    <!-- Error message shown when a user clicks a category that was pinned to the home screen, but the category no longer exists because it was deleted. -->
     <!-- Validation error, shown when user tries to save a shortcut without a name -->
     <string name="validation_name_not_empty">請輸入一個名稱。</string>
     <!-- Validation error, shown when user tries to save a shortcut without a valid URL -->
@@ -385,6 +387,7 @@
     <!-- Label: Shown on checkbox in "Advanced Settings" section of shortcut editor -->
     <string name="label_wait_for_connection">離線時等待連線</string>
     <!-- Label: Shown on checkbox in "Trigger & Execution Settings" section of shortcut editor, to allow configuring a shortcut to be run every time the user opens the app -->
+    <string name="label_run_on_app_start">每次開啟應用程式時均執行</string>
     <!-- Label: Shown on button that allows to enable execution delay of a shortcut -->
     <string name="label_delay_execution">延遲執行</string>
     <!-- Button, shown on About page, to allow opening the app's Play Store page -->
@@ -397,6 +400,9 @@
     <string name="settings_f_droid_summary">檢查是否有更新</string>
     <!-- Title of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation">說明文件</string>
+    <!-- Title of option in settings screen: allows to select whether the built-in documentation pages or the ones from the website should be shown -->
+    <!-- Option for setting to select how documentation links should be resolved: inside the app (as opposed to in the browser) -->
+    <!-- Option for setting to select how documentation links should be resolved: in the browser (as opposed to inside the app) -->
     <!-- Subtitle of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation_summary">常見問題、參考資料、範例 …</string>
     <!-- Message, shown in snackbar, confirming to user that a shortcut was duplicated. %1$s is a placeholder for the shortcut's name -->
@@ -808,6 +814,7 @@
     <!-- error message displayed when "Maximum" is lesser than or equal to "Minimum" for "slider" variable type -->
     <string name="error_slider_max_not_greater_than_min">最大值必須大於最小值。</string>
     <!-- error message displayed a slider's value is not between its defined minimum and maximum -->
+    <string name="error_slider_value_must_be_between_min_and_max">數值必須介乎最小與最大值之間。</string>
     <!-- error message displayed when "Step Size" is not a positive number for "slider" variable type -->
     <string name="error_slider_step_size_must_be_positive">步幅大小必須為正數。</string>
     <!-- Title: Shown above cropper/resizer tool when picking a custom icon -->
@@ -931,6 +938,7 @@
     <string name="action_type_open_url_title">開啟 URL</string>
     <!-- Shortcut Action Title: Open another app (via its package name) -->
     <string name="action_type_open_app_title">開啟應用程式</string>
+    <!-- Shortcut Action Title: Open a specific category within the app -->
     <!-- Shortcut Action Title: get the device ID (i.e., a unique identifier for the app, to differentiate it from app installations on other devices) -->
     <string name="action_type_get_device_id_title">取得裝置識別碼</string>
     <!-- Shortcut Action Error: Shown when the "Send Intent" action fails -->
@@ -1185,6 +1193,7 @@
     <string name="error_shortcut_not_found_for_set_visible">捷徑「%1$s」不存在，故無法變更可見度。</string>
     <!-- Error message: Shown in toast when "Set Category Hidden" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <string name="error_category_not_found_for_set_visible">類別「%1$s」不存在，故無法變更可見度。</string>
+    <!-- Error message: Shown in toast when "Open Category" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <!-- Error message: Shown in toast when "Change Icon" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
     <string name="error_shortcut_not_found_for_changing_icon">捷徑「%1$s」不存在，故無法變更圖示。</string>
     <!-- Error message: Shown in toast when "Change Description" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
@@ -1540,6 +1549,7 @@
     <!-- Error message: Shown when the user tries to read a TCP response via Scripting but it fails. %s is a placeholder for a more detailed error message -->
     <string name="error_failed_to_receive_tcp">無法讀取自 TCP 通訊端：%s</string>
     <!-- Error message: Shown when the user tries to read a TCP response via Scripting but provides an unsupported 'read mode' value. %s is a placeholder for the value that was provided. 'text' and 'line' must be kept as-is and not translated. -->
+    <string name="error_tcp_unsupported_read_mode">TCP 不支援讀取模式「%s」。必須為「text」或「line」</string>
     <!-- Error message: Shown when the user tries to open a file via the openUrl function in Scripting, which is not supported -->
     <string name="error_opening_files_using_open_url_not_supported">不支援使用 openUrl() 開啟檔案</string>
     <!-- Page title, for page showing all events that happened recently -->
@@ -2107,29 +2117,50 @@
     <!-- Error shown when reading a file shared into the app fails -->
     <string name="error_read_shared_file">無法接收分享的檔案</string>
     <!-- Error shown when an SSH command fails because the SSH session can not be opened -->
+    <string name="error_ssh_failed_to_open_session">無法開啟 SSH 工作階段</string>
     <!-- Error shown when an SSH command fails because the SSH host rejected it -->
+    <string name="error_ssh_command_rejected_by_host">SSH 命令被主機拒絕</string>
     <!-- Error shown when an SSH command fails with a signal on the host. %s is a placeholder for the signal -->
+    <string name="error_ssh_command_failed_with_signal">SSH 命令失敗，傳回訊號 %s</string>
     <!-- Error shown when an SSH command fails. %s is a placeholder for the error details -->
+    <string name="error_ssh_failed">SSH 失敗：%s</string>
     <!-- Error shown when an SSH command fails due a mismatch of the algorithm. %s is a placeholder for the error details -->
+    <string name="error_ssh_failed_with_algorithm_mismatch">SSH 連線失敗，乃因演算法不相符：%s</string>
     <!-- Error shown when an SSH command fails because the SSH host can not be verified. %s is a placeholder for the host's algorithm and public key -->
+    <string name="error_ssh_host_verification_failed">SSH 主機驗證失敗。\n\n主機金鑰為：\n%s</string>
     <!-- Error shown when an SSH command fails because the SSH host can not be verified. %1$s and %2$s are placeholders for the host's algorithm and public key (expected and actual) -->
+    <string name="error_ssh_host_verification_failed_with_expected">SSH 主機驗證失敗。\n\n預期：\n%1$s\n\n實際：\n%2$s</string>
     <!-- Error shown when an SSH command fails due to an authentication error -->
+    <string name="error_ssh_authentication_failed">SSH 認證失敗</string>
     <!-- Error shown when an SSH command due to a decryption error, likely because an incorrect passphrase was provided -->
+    <string name="error_ssh_incorrect_passphrase">解密失敗。密令是否有誤？</string>
     <!-- Error shown when the `getDirectory` Scripting function is used but the directory is not found -->
+    <string name="error_directory_not_found">找不到目錄「%s」</string>
     <!-- Error shown when the `getDirectory` Scripting function is used but the directory is not mounted, i.e., not accessible -->
+    <string name="error_directory_not_mounted">目錄「%s」未掛接</string>
     <!-- Error shown when the `parseHTML` Scripting function is used but an invalid selector argument is provided. %s is a placeholder for the error details -->
+    <string name="error_in_parse_html_selector">parseHTML 選取器發生錯誤：%s</string>
     <!-- Error shown when the `parseHTML` Scripting function is used but an query type argument is provided. %s is a placeholder for the value that was provided. -->
+    <string name="error_in_parse_html_unknown_query_type">parseHTML 發生錯誤：未知的查詢類型「%s」，必須為「css」或「xpath」</string>
     <!-- Error shown when a slider is incorrectly used in Scripting. %s is a placeholder for the error details -->
+    <string name="error_slider_error">滑桿錯誤：%s</string>
     <!-- Error shown when a the 'vibrate' Scripting function is used but an unsupported vibration pattern is provided. %s is a placeholder for the name of the pattern -->
+    <string name="error_unknown_vibration_pattern">未知的震動模式：%s</string>
     <!-- Error when automatic import/export fails because no directory is configured to export to or import from -->
+    <string name="error_sync_no_directory_set">未設定目錄</string>
     <!-- Error when automatic export fails because the backup file could not be created -->
+    <string name="error_sync_failed_to_create_file">無法建立檔案，目錄或不存在，又或未有授權</string>
     <!-- Error when automatic import/export fails because no url is configured to export to or import from -->
+    <string name="error_sync_no_url_set">未設定 URL</string>
     <!-- Error when automatic import failed because the file does not exist. %s is a placeholder for the file's name -->
+    <string name="error_sync_file_not_found">目錄中找不到名稱為「%s」的檔案</string>
     <!-- Error when automatic import failed because no suitable zip file was found in the specified directory -->
+    <string name="error_sync_zip_file_not_found">目錄中找不到 ZIP 檔案</string>
     <!-- Error when accessing a file (shared into the app) fails due to a security error, likely because of a problem with the sharing app. %s is a placeholder for the error details -->
+    <string name="error_file_access_security">安全性錯誤：%s</string>
     <!-- Error when accessing a file (shared into the app) fails due to an unknown error. %s is a placeholder for the error details -->
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">模擬媒體播放器</string>
+    <string name="settings_media_controls_title">模擬媒體播放器</string>
     <string name="label_event_history_trigger_type_media_controls">媒體控制</string>
     <string name="settings_media_controls_summary">允許透過智慧型手錶或耳機按鈕等方式進行控制。</string>
     <string name="notification_channel_media_controls_title">媒體播放器模擬</string>
@@ -2145,4 +2176,6 @@
     <string name="media_controls_change_category">切換類別</string>
     <string name="media_controls_change_category_summary">按播放或暫停選取下一個類別</string>
     <string name="media_controls_category_item_pattern">%1$s — %2$s</string>
+    <string name="error_file_access_generic">無法存取檔案：%s</string>
+    <!-- Dialog message, shown to the user on the Documentation screen the first time to inform them that docs are only available in English -->
 </resources>

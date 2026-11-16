@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import ch.rmy.android.http_shortcuts.R
 import ch.rmy.android.http_shortcuts.components.SettingsButton
+import ch.rmy.android.http_shortcuts.components.SettingsSelection
 import ch.rmy.android.http_shortcuts.components.Spacing
 
 @Composable
@@ -18,8 +20,10 @@ fun AboutContent(
     fDroidVisible: Boolean,
     deviceId: String,
     crashReportingAllowed: Boolean,
+    openDocsInBrowser: Boolean,
     onChangeLogButtonClicked: () -> Unit,
     onDocumentationButtonClicked: () -> Unit,
+    onChangeOpenDocsInBrowser: (Boolean) -> Unit,
     onContactButtonClicked: () -> Unit,
     onTranslateButtonClicked: () -> Unit,
     onPlayStoreButtonClicked: () -> Unit,
@@ -38,18 +42,30 @@ fun AboutContent(
             .padding(bottom = Spacing.SMALL),
     ) {
         SettingsButton(
-            icon = painterResource(R.drawable.outline_live_help_24),
-            title = stringResource(R.string.settings_documentation),
-            subtitle = stringResource(R.string.settings_documentation_summary),
-            onClick = onDocumentationButtonClicked,
-        )
-
-        SettingsButton(
             icon = painterResource(R.drawable.outline_code_24),
             title = stringResource(R.string.settings_changelog),
             subtitle = stringResource(R.string.settings_changelog_summary, versionNumber),
             onClick = onChangeLogButtonClicked,
         )
+
+        SettingsButton(
+            icon = painterResource(R.drawable.outline_live_help_24),
+            title = stringResource(R.string.settings_documentation),
+            subtitle = stringResource(R.string.settings_documentation_summary),
+            onClick = onDocumentationButtonClicked,
+        )
+        SettingsSelection(
+            icon = painterResource(R.drawable.outline_web_asset_24),
+            title = stringResource(R.string.settings_documentation_source),
+            selectedKey = openDocsInBrowser,
+            items = listOf(
+                false to stringResource(R.string.settings_documentation_source_in_app),
+                true to stringResource(R.string.settings_documentation_source_in_browser),
+            ),
+            onItemSelected = onChangeOpenDocsInBrowser,
+        )
+
+        HorizontalDivider()
 
         SettingsButton(
             icon = painterResource(R.drawable.outline_mail_24),
@@ -97,6 +113,8 @@ fun AboutContent(
             onClick = onTranslateButtonClicked,
         )
 
+        HorizontalDivider()
+
         SettingsButton(
             icon = painterResource(R.drawable.ic_google_play),
             title = stringResource(R.string.settings_play_store),
@@ -119,6 +137,8 @@ fun AboutContent(
             subtitle = stringResource(R.string.settings_github_summary),
             onClick = onGitHubButtonClicked,
         )
+
+        HorizontalDivider()
 
         SettingsButton(
             icon = painterResource(R.drawable.outline_article_24),

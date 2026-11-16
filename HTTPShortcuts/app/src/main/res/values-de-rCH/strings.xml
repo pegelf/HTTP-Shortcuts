@@ -47,7 +47,7 @@ Zusätzlich musst du eventuell auch noch die App von Akku-Optimierungen ausschli
     <!-- Instructions shown in a dialog window the first time the user selects a different icon for the app -->
     <string name="instructions_apply_new_app_icon">Um das App-Symbol zu ändern, muss sich die App möglicherweise selbst schliessen. Es kann ein paar Sekunden dauern, bis der Launcher das Symbol aktualisiert.\n\nShortcuts die bereits auf dem Startbildschirm platziert wurden, funktionieren möglicherweise nicht bis die App neu gestartet wird.</string>
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">Media Player simulieren</string>
+    <string name="settings_media_controls_title">Media Player simulieren</string>
     <string name="label_event_history_trigger_type_media_controls">Mediensteuerung</string>
     <string name="settings_media_controls_summary">Erlaubt die Steuerung z.B. per Smartwatch oder Kopfhörertasten.</string>
     <string name="settings_media_controls_section_title">Simulierter Media Player</string>

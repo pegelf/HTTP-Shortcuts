@@ -58,7 +58,7 @@
     <string name="dialog_title_select_icon_background_color">Icon Background Colour</string>
     <string name="category_vertical_alignment_center">Centre</string>
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">Simulate Media Player</string>
+    <string name="settings_media_controls_title">Simulate Media Player</string>
     <string name="label_event_history_trigger_type_media_controls">Media Controls</string>
     <string name="settings_media_controls_summary">Allows control via a smartwatch or headphone buttons, for example.</string>
     <string name="settings_media_controls_section_title">Simulated Media Player</string>

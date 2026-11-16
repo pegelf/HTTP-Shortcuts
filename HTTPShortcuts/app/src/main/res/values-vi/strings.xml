@@ -112,7 +112,9 @@ Lối tắt HTTP</string>
     <string name="executed">%s được thực thi.</string>
     <!-- Error message shown in Toast when shortcut on home screen was clicked but the corresponding data was not found (i.e. might have been deleted). -->
     <string name="shortcut_not_found">Không tìm thấy phím tắt. Bạn có thể phải thêm lại nó vào màn hình chính.</string>
+    <!-- Error message shown when clicking a widget, but the configured shortcut does not exist -->
     <!-- Error message shown when a user clicks a shortcut that was pinned to the home screen, but the shortcut no longer exists because it was deleted. -->
+    <!-- Error message shown when a user clicks a category that was pinned to the home screen, but the category no longer exists because it was deleted. -->
     <!-- Validation error, shown when user tries to save a shortcut without a name -->
     <string name="validation_name_not_empty">Vui lòng nhập tên.</string>
     <!-- Validation error, shown when user tries to save a shortcut without a valid URL -->
@@ -354,6 +356,9 @@ Lối tắt HTTP</string>
     <string name="settings_f_droid_summary">Kiểm tra cập nhật</string>
     <!-- Title of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation">Tài liệu</string>
+    <!-- Title of option in settings screen: allows to select whether the built-in documentation pages or the ones from the website should be shown -->
+    <!-- Option for setting to select how documentation links should be resolved: inside the app (as opposed to in the browser) -->
+    <!-- Option for setting to select how documentation links should be resolved: in the browser (as opposed to inside the app) -->
     <!-- Subtitle of option in settings screen: links the user to an external documentation page -->
     <string name="settings_documentation_summary">Câu hỏi thường gặp, tài liệu tham khảo, ví dụ, …</string>
     <!-- Message, shown in snackbar, confirming to user that a shortcut was duplicated. %1$s is a placeholder for the shortcut's name -->
@@ -826,6 +831,7 @@ Tuy nhiên, bạn chưa có bất kỳ biến nào được định cấu hình.
     <string name="action_type_open_url_title">mở URL</string>
     <!-- Shortcut Action Title: Open another app (via its package name) -->
     <string name="action_type_open_app_title">Mở chương trình</string>
+    <!-- Shortcut Action Title: Open a specific category within the app -->
     <!-- Shortcut Action Title: get the device ID (i.e., a unique identifier for the app, to differentiate it from app installations on other devices) -->
     <!-- Shortcut Action Error: Shown when the "Send Intent" action fails -->
     <string name="error_action_type_send_intent_failed">Không gửi được ý định: %s</string>
@@ -1053,6 +1059,7 @@ Tuy nhiên, bạn chưa có bất kỳ biến nào được định cấu hình.
     <string name="error_shortcut_not_found_for_renaming">Không thể đổi tên lối tắt \"%1$s\" vì lối tắt này không tồn tại.</string>
     <!-- Error message: Shown in toast when "Set Shortcut Hidden" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
     <!-- Error message: Shown in toast when "Set Category Hidden" action cannot find the specified category. %1$s is a placeholder for the category's name -->
+    <!-- Error message: Shown in toast when "Open Category" action cannot find the specified category. %1$s is a placeholder for the category's name -->
     <!-- Error message: Shown in toast when "Change Icon" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
     <string name="error_shortcut_not_found_for_changing_icon">Không thể thay đổi biểu tượng của lối tắt \"%1$s\" vì nó không tồn tại.</string>
     <!-- Error message: Shown in toast when "Change Description" action cannot find the specified shortcut. %1$s is a placeholder for the shortcut's name -->
@@ -1689,7 +1696,7 @@ Tuy nhiên, bạn chưa có bất kỳ biến nào được định cấu hình.
     <!-- Error when accessing a file (shared into the app) fails due to a security error, likely because of a problem with the sharing app. %s is a placeholder for the error details -->
     <!-- Error when accessing a file (shared into the app) fails due to an unknown error. %s is a placeholder for the error details -->
     <!-- Media controls -->
-+    <string name="settings_media_controls_title">Mô phỏng trình phát đa phương tiện</string>
+    <string name="settings_media_controls_title">Mô phỏng trình phát đa phương tiện</string>
     <string name="label_event_history_trigger_type_media_controls">Điều khiển phương tiện</string>
     <string name="settings_media_controls_summary">Cho phép điều khiển, ví dụ qua đồng hồ thông minh hoặc các nút tai nghe.</string>
     <string name="notification_channel_media_controls_title">Mô phỏng trình phát đa phương tiện</string>
@@ -1705,4 +1712,5 @@ Tuy nhiên, bạn chưa có bất kỳ biến nào được định cấu hình.
     <string name="media_controls_change_category">Đổi danh mục</string>
     <string name="media_controls_change_category_summary">Nhấn phát hoặc tạm dừng để chọn danh mục tiếp theo</string>
     <string name="media_controls_category_item_pattern">%1$s — %2$s</string>
+    <!-- Dialog message, shown to the user on the Documentation screen the first time to inform them that docs are only available in English -->
 </resources>

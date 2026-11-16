@@ -65,6 +65,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -94,6 +95,8 @@ open class MainActivity : BaseComposeActivity() {
             }
         }
     }
+
+    private val intentFlow = MutableSharedFlow<Intent>()
 
     @Composable
     override fun Content() {
@@ -226,7 +229,7 @@ open class MainActivity : BaseComposeActivity() {
                 .navigationBarsPadding()
                 .fillMaxSize(),
         ) {
-            NavigationRoot(navHostController)
+            NavigationRoot(navHostController, intentFlow)
         }
     }
 
@@ -364,6 +367,13 @@ open class MainActivity : BaseComposeActivity() {
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        lifecycleScope.launch {
+            intentFlow.emit(intent)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         if (ActivityCloser.shouldCloseMainActivity()) {
@@ -378,7 +388,7 @@ open class MainActivity : BaseComposeActivity() {
 
     object SelectShortcut : ActivityResultContract<Unit, SelectShortcut.Result?>() {
         override fun createIntent(context: Context, input: Unit): Intent =
-            IntentBuilder().build(context)
+            IntentBuilder(newTask = false).build(context)
                 .setAction(ACTION_SELECT_SHORTCUT_FOR_PLUGIN)
 
         override fun parseResult(resultCode: Int, intent: Intent?): Result? =
@@ -394,11 +404,13 @@ open class MainActivity : BaseComposeActivity() {
         data class Result(val shortcutId: ShortcutId, val shortcutName: String)
     }
 
-    class IntentBuilder : BaseIntentBuilder(MainActivity::class) {
+    class IntentBuilder(newTask: Boolean = true) : BaseIntentBuilder(MainActivity::class) {
         init {
             intent.action = Intent.ACTION_VIEW
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (newTask) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
         }
 
         fun categoryId(categoryId: CategoryId) = also {
@@ -442,19 +454,32 @@ open class MainActivity : BaseComposeActivity() {
         const val EXTRA_IMPORT_URL = "ch.rmy.android.http_shortcuts.import_url"
         const val EXTRA_CANCEL_PENDING_EXECUTIONS = "ch.rmy.android.http_shortcuts.cancel_executions"
         const val EXTRA_SUPPRESS_ON_APP_START = "ch.rmy.android.http_shortcuts.suppress_on_app_start"
+        private const val EXTRA_VARIABLE_WIDGET = "ch.rmy.android.http_shortcuts.variable_widget"
 
         fun determineMode(context: Context, intent: Intent) = when (intent.action) {
             Intent.ACTION_CREATE_SHORTCUT -> SelectionMode.HOME_SCREEN_SHORTCUT_PLACEMENT
             AppWidgetManager.ACTION_APPWIDGET_CONFIGURE -> {
-                val widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0)
-                logInfo("Determining mode for widget configuration, has Widget ID = ${widgetId > 0}")
-                val variableLayout = AppWidgetManager.getInstance(context)
-                    .getAppWidgetInfo(widgetId)
-                    ?.initialLayout
-                when (variableLayout) {
-                    R.layout.variable_widget -> SelectionMode.VARIABLE_WIDGET_PLACEMENT
-                    R.layout.shortcut_widget -> SelectionMode.SHORTCUT_WIDGET_PLACEMENT
-                    else -> SelectionMode.SHORTCUT_WIDGET_PLACEMENT // TODO: Find a better fallback
+                if (intent.getBooleanExtra(EXTRA_VARIABLE_WIDGET, false)) {
+                    logInfo("Variable widget mode extra detected")
+                    SelectionMode.VARIABLE_WIDGET_PLACEMENT
+                } else {
+                    val widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0)
+                    logInfo("Determining mode for widget configuration, has Widget ID = ${widgetId > 0}")
+                    val variableLayout = AppWidgetManager.getInstance(context)
+                        .getAppWidgetInfo(widgetId)
+                        ?.initialLayout
+                    when (variableLayout) {
+                        R.layout.variable_widget -> {
+                            intent.putExtra(EXTRA_VARIABLE_WIDGET, true)
+                            SelectionMode.VARIABLE_WIDGET_PLACEMENT
+                        }
+                        R.layout.shortcut_widget -> SelectionMode.SHORTCUT_WIDGET_PLACEMENT
+                        else -> {
+                            // TODO: Find a better fallback. Might not be needed anymore
+                            logInfo("Could not determine widget type")
+                            SelectionMode.SHORTCUT_WIDGET_PLACEMENT
+                        }
+                    }
                 }
             }
             ACTION_SELECT_SHORTCUT_FOR_PLUGIN -> SelectionMode.PLUGIN
